@@ -14,8 +14,9 @@ public class TankHealth : NetworkBehaviour
     public float curHealth;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
+        //Debug.Log("当前血量： " + curHealth);
         curHealth = totalHealth;
     }
 
@@ -51,6 +52,12 @@ public class TankHealth : NetworkBehaviour
             GameController._instance.RemovePlayerFromList(this.gameObject);
             Destroy(this.gameObject);
         }
+    }
+
+    public void OnDestroy()
+    {
+        CmdTankBoom();
+        GameController._instance.RemovePlayerFromList(this.gameObject);
     }
 
     [Command]

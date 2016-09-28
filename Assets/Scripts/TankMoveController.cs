@@ -40,17 +40,21 @@ public class TankMoveController : NetworkBehaviour
         }
     }
 
+    public void OnEnable()
+    {
+        GameController._instance.AddPlayerInit(this.gameObject);
+    }
+
     // Use this for initialization
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        GameController._instance.AddPlayerInit(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void FixedUpdate()
