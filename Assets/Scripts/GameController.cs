@@ -9,14 +9,15 @@ public class GameController : NetworkBehaviour
 
     private Camera camera0;
 
-    private List<GameObject> tankTransList = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> tankTransList = new List<GameObject>();
 
-    private Vector3 m_DesiredPosition;
-    private Vector3 m_MoveVelocity;
-    public float m_DampTime = 0.2f;
-    private float m_ZoomSpeed;
-    public float m_ScreenEdgeBuffer = 4f;
-    public float m_MinSize = 6.5f;
+    //private Vector3 m_DesiredPosition;
+    //private Vector3 m_MoveVelocity;
+    //public float m_DampTime = 0.2f;
+    //private float m_ZoomSpeed;
+    //public float m_ScreenEdgeBuffer = 4f;
+    //public float m_MinSize = 6.5f;
 
     void Awake()
     {
@@ -24,10 +25,10 @@ public class GameController : NetworkBehaviour
     }
 
     // Use this for initialization
-    void Start()
-    {
-        camera0 = Camera.main;
-    }
+    //void Start()
+    //{
+    //    camera0 = Camera.main;
+    //}
 
     // Update is called once per frame
     void Update()
@@ -35,68 +36,68 @@ public class GameController : NetworkBehaviour
 
     }
 
-    public void LateUpdate()
-    {
-        CameraMove();//相机的移动
+    //public void LateUpdate()
+    //{
+    //    CameraMove();//相机的移动
 
-        CameraZoom(); //相机的缩放
-    }
+    //    CameraZoom(); //相机的缩放
+    //}
 
-    private void CameraMove()
-    {
-        FindAveragePosition();
-        camera0.gameObject.transform.position = Vector3.SmoothDamp(camera0.gameObject.transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
-    }
+    //private void CameraMove()
+    //{
+    //    FindAveragePosition();
+    //    camera0.gameObject.transform.position = Vector3.SmoothDamp(camera0.gameObject.transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
+    //}
 
-    private void CameraZoom()
-    {
-        float requiredSize = FindRequiredSize();
-        camera0.orthographicSize = Mathf.SmoothDamp(camera0.orthographicSize, requiredSize, ref m_ZoomSpeed, m_DampTime);
-    }
+    //private void CameraZoom()
+    //{
+    //    float requiredSize = FindRequiredSize();
+    //    camera0.orthographicSize = Mathf.SmoothDamp(camera0.orthographicSize, requiredSize, ref m_ZoomSpeed, m_DampTime);
+    //}
 
-    private float FindRequiredSize()
-    {
-        Vector3 desiredLocalPos = camera0.gameObject.transform.InverseTransformPoint(m_DesiredPosition);
+    //private float FindRequiredSize()
+    //{
+    //    Vector3 desiredLocalPos = camera0.gameObject.transform.InverseTransformPoint(m_DesiredPosition);
 
-        float size = 0f;
+    //    float size = 0f;
 
-        for (int i = 0; i < tankTransList.Count; i++)
-        {
-            if (!tankTransList[i].activeSelf)
-                continue;
+    //    for (int i = 0; i < tankTransList.Count; i++)
+    //    {
+    //        if (!tankTransList[i].activeSelf)
+    //            continue;
 
-            Vector3 targetLocalPos = camera0.gameObject.transform.InverseTransformPoint(tankTransList[i].transform.position);
-            Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
-            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
-            size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x) / camera0.aspect);
-        }
+    //        Vector3 targetLocalPos = camera0.gameObject.transform.InverseTransformPoint(tankTransList[i].transform.position);
+    //        Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
+    //        size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
+    //        size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x) / camera0.aspect);
+    //    }
 
-        size += m_ScreenEdgeBuffer;
-        size = Mathf.Max(size, m_MinSize);
-        return size;
-    }
+    //    size += m_ScreenEdgeBuffer;
+    //    size = Mathf.Max(size, m_MinSize);
+    //    return size;
+    //}
 
-    private void FindAveragePosition()
-    {
-        Vector3 averagePos = new Vector3();
-        int numTargets = 0;
+    //private void FindAveragePosition()
+    //{
+    //    Vector3 averagePos = new Vector3();
+    //    int numTargets = 0;
 
-        for (int i = 0; i < tankTransList.Count; i++)
-        {
-            if (!tankTransList[i].gameObject.activeSelf)
-                continue;
+    //    for (int i = 0; i < tankTransList.Count; i++)
+    //    {
+    //        if (!tankTransList[i].gameObject.activeSelf)
+    //            continue;
 
-            averagePos += tankTransList[i].transform.position;
-            numTargets++;
-        }
+    //        averagePos += tankTransList[i].transform.position;
+    //        numTargets++;
+    //    }
 
-        if (numTargets > 0)
-            averagePos /= numTargets;
+    //    if (numTargets > 0)
+    //        averagePos /= numTargets;
 
-        averagePos.y = camera0.gameObject.transform.position.y;
+    //    averagePos.y = camera0.gameObject.transform.position.y;
 
-        m_DesiredPosition = averagePos;
-    }
+    //    m_DesiredPosition = averagePos;
+    //}
 
     public void AddPlayerInit(GameObject player)
     {
@@ -104,6 +105,10 @@ public class GameController : NetworkBehaviour
         {
             tankTransList.Add(player);
             player.SetActive(true);
+        }
+        if (isLocalPlayer)
+        {
+            CameraController._instance.mTankPrefab = player;
         }
     }
 

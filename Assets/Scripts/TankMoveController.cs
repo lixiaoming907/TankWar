@@ -49,6 +49,8 @@ public class TankMoveController : NetworkBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        if (isLocalPlayer)
+            CameraController._instance.mTankPrefab = this.gameObject;
     }
 
     // Update is called once per frame
