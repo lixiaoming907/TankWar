@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     public GameObject mTankPrefab;
 
     //[HideInInspector]
-    public bool wholeView = false; //雷达效果
+    public bool wholeView = false;
 
     void Awake()
     {
