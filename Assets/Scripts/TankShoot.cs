@@ -34,10 +34,10 @@ public class TankShoot : NetworkBehaviour
             if (fireTime < intervalTime)
             {
                 fireTime += Time.deltaTime;
-                if (fireTime >= intervalTime)
-                {
-                    canShoot = true;
-                }
+            }
+            if (fireTime >= intervalTime)
+            {
+                canShoot = true;
             }
         }
     }
