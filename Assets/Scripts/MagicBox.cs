@@ -7,7 +7,7 @@ public class MagicBox : MagicBoxBase
 {
     GameObject tank;
 
-    public float boxRotateSpeed = 10;
+    public float boxRotateSpeed = 70;
 
     [ServerCallback]
     void Update()
@@ -33,7 +33,6 @@ public class MagicBox : MagicBoxBase
                     RpcAddShootBuff(tank);
                     break;
             }
-            MagicBoxController._instance.canCreatBox = true;
             StartCoroutine(DestroyBox());
         }
     }
@@ -77,6 +76,7 @@ public class MagicBox : MagicBoxBase
     private IEnumerator DestroyBox()
     {
         yield return new WaitForSeconds(0.1f);
+        MagicBoxController._instance.canCreatBox = true;
         Destroy(this.gameObject);
     }
 }
