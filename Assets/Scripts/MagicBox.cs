@@ -7,12 +7,12 @@ public class MagicBox : MagicBoxBase
 {
     GameObject tank;
 
-    public float boxRotateSpeed = 70;
+    public float boxRotateSpeed = 10;
 
     [ServerCallback]
     void Update()
     {
-        transform.Rotate(transform.up,boxRotateSpeed * Time.deltaTime);
+        transform.Rotate(transform.up, boxRotateSpeed * Time.deltaTime);
     }
 
     [ServerCallback] //根据不同的类型 给客户端发消息增加不同的buff

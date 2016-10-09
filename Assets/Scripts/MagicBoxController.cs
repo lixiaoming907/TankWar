@@ -34,7 +34,7 @@ public class MagicBoxController : NetworkBehaviour
                 //在服务器生成箱子，并同步到客户端
                 GameObject box = Instantiate(magicBoxPrefab);
                 int typeSend = Random.Range(1, 4);
-                int posSend = Random.Range(1,boxPos.Length);
+                int posSend = Random.Range(1, boxPos.Length);
                 magicBoxPrefab.transform.position = boxPos[posSend];
                 box.GetComponent<MagicBoxBase>().buffType = (MagicBoxBase.BoxType)typeSend;
                 CreatMagicBoxOnClient(box);
