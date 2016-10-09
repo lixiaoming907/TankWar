@@ -7,6 +7,8 @@ public class TankMoveController : NetworkBehaviour
     public float moveSpeed = 10;
     public float rotateSpeed = 5;
 
+    public GameObject playerController;
+
     private Rigidbody rigid;
     [HideInInspector]
     public bool canMove = true;
@@ -50,7 +52,9 @@ public class TankMoveController : NetworkBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         if (isLocalPlayer)
+        {
             CameraController._instance.mTankPrefab = this.gameObject;
+        }
     }
 
     // Update is called once per frame

@@ -40,11 +40,15 @@ public class CameraController : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (mTankPrefab)
+        if (mTankPrefab || wholeView)
         {
             CameraMove();//相机的移动
 
             CameraZoom(); //相机的缩放
+        }
+        else
+        {
+            wholeView = true;
         }
     }
 

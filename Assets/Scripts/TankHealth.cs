@@ -13,6 +13,8 @@ public class TankHealth : NetworkBehaviour
     [SyncVar]
     public float curHealth;
 
+    private CountDownController countDown;
+
     // Use this for initialization
     void Awake()
     {
@@ -20,19 +22,25 @@ public class TankHealth : NetworkBehaviour
         curHealth = totalHealth;
     }
 
+    void OnEnable()
+    {
+        GameObject canvase = GameObject.Find("Canvas");
+        countDown = canvase.transform.GetChild(0).GetComponent<CountDownController>();
+        CameraController._instance.wholeView = false;
+        curHealth = totalHealth;
+        CmdTankResetPos();
+    }
+
+    void Start()
+    {
+        CameraController._instance.wholeView = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
 
     }
-
-    //void OnCollisionEnter(Collision collisionInfo)
-    //{
-    //    if (collisionInfo.gameObject.tag == "Bullet")
-    //    {
-    //        TakeDamage();
-    //    }
-    //}
 
     public void TakeDamage()
     {
@@ -48,9 +56,18 @@ public class TankHealth : NetworkBehaviour
     {
         if (curHealth <= 0)//坦克死亡，该爆炸了
         {
-            CmdTankBoom();
             GameController._instance.RemovePlayerFromList(this.gameObject);
-            Destroy(this.gameObject);
+
+            if (isLocalPlayer)
+            {
+                CmdTankBoom();
+                //进入死亡倒计时
+                countDown.isDead = true;
+                countDown.gameObject.SetActive(true);
+                CameraController._instance.wholeView = true;
+            }
+
+            //Destroy(this.gameObject);
         }
     }
 
@@ -61,10 +78,28 @@ public class TankHealth : NetworkBehaviour
     }
 
     [Command]
+    void CmdTankResetPos()
+    {
+        RpcActiveTrue(this.gameObject);
+    }
+
+    [ClientRpc]
+    void RpcActiveTrue(GameObject tank)
+    {
+        tank.SetActive(true);
+    }
+
+    [Command]
     void CmdTankBoom()
     {
         GameObject tankBoom = Instantiate(tankBoomEffect, transform.position, transform.rotation) as GameObject;
-        //this.gameObject.SetActive(false);
         NetworkServer.Spawn(tankBoom);
+        RpcActiveFalse(this.gameObject);
+    }
+
+    [ClientRpc]
+    void RpcActiveFalse(GameObject tank)
+    {
+        tank.SetActive(false);
     }
 }

@@ -12,6 +12,8 @@ public class TankHealthUI : NetworkBehaviour
     private Image healthImage;
     public Text nameTxt;
 
+    
+
     [HideInInspector]
     [SyncVar(hook = "OnTankNameChanged")]
     public string tankName;
