@@ -50,19 +50,14 @@ public class TankHealth : NetworkBehaviour
         {
             CmdTankBoom();
             GameController._instance.RemovePlayerFromList(this.gameObject);
-            StartCoroutine(TankDestroy());
+            Destroy(this.gameObject);
         }
-    }
-
-    private IEnumerator TankDestroy()
-    {
-        yield return new WaitForSeconds(0.1f);
-        Destroy(this.gameObject);
     }
 
     public void OnDestroy()
     {
         CmdTankBoom();
+        GameController._instance.RemovePlayerFromList(this.gameObject);
     }
 
     [Command]

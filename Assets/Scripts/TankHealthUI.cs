@@ -28,26 +28,15 @@ public class TankHealthUI : NetworkBehaviour
         StartCoroutine(TankeStart());
     }
 
-    public override void OnStartLocalPlayer()
-    {
-        base.OnStartLocalPlayer();
-        if (isLocalPlayer)
-        {
-            string tankName = Dns.GetHostName();
-            ScoreController._instance.CmdAddPlayer(tankName);
-        }
-    }
-
     private IEnumerator TankeStart()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         if (isLocalPlayer)
         {
             string name = Dns.GetHostName();
             nameTxt.text = name;
             tankName = name;
             CmdDefineName(tankName);
-            this.gameObject.name = name;
         }
         else
         {
@@ -69,11 +58,10 @@ public class TankHealthUI : NetworkBehaviour
 
     void OnTankNameChanged(string tName)
     {
-        if (!isLocalPlayer)
-        {
+        //if (!isLocalPlayer)
+        //{
             Debug.Log("名字改变：" + tName);
             nameTxt.text = tName;
-            this.gameObject.name = tName;
-        }
+        //}
     }
 }
