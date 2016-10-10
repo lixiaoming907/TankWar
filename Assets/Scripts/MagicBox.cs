@@ -6,7 +6,7 @@ using System;
 public class MagicBox : MagicBoxBase
 {
     GameObject tank;
-
+    
     public float boxRotateSpeed = 10;
 
     [ServerCallback]
@@ -42,10 +42,14 @@ public class MagicBox : MagicBoxBase
     {
         if (CameraController._instance.mTankPrefab == tankObject)
         {
-            TankMoveController moveController = CameraController._instance.mTankPrefab.GetComponent<TankMoveController>();
-            moveController.moveSpeed *= 2;
-            moveController.rotateSpeed *= 2;
             TankBuff tankBuff = CameraController._instance.mTankPrefab.GetComponent<TankBuff>();
+            if (tankBuff.CheckBuff((int) BoxType.moveSpeed))
+            {
+                TankMoveController moveController =
+                    CameraController._instance.mTankPrefab.GetComponent<TankMoveController>();
+                moveController.moveSpeed *= 2;
+                moveController.rotateSpeed *= 2;
+            }
             tankBuff.AddBuff((int)BoxType.moveSpeed);
         }
     }
@@ -55,9 +59,12 @@ public class MagicBox : MagicBoxBase
     {
         if (CameraController._instance.mTankPrefab == tankObject)
         {
-            TankShoot tankShoot = CameraController._instance.mTankPrefab.GetComponent<TankShoot>();
-            tankShoot.intervalTime /= 3;
             TankBuff tankBuff = CameraController._instance.mTankPrefab.GetComponent<TankBuff>();
+            if (tankBuff.CheckBuff((int) BoxType.shootSpeed))
+            {
+                TankShoot tankShoot = CameraController._instance.mTankPrefab.GetComponent<TankShoot>();
+                tankShoot.intervalTime /= 3;
+            }
             tankBuff.AddBuff((int)BoxType.shootSpeed);
         }
     }
@@ -67,8 +74,11 @@ public class MagicBox : MagicBoxBase
     {
         if (CameraController._instance.mTankPrefab == tankObject)
         {
-            CameraController._instance.wholeView = true;
             TankBuff tankBuff = CameraController._instance.mTankPrefab.GetComponent<TankBuff>();
+            if (tankBuff.CheckBuff((int) BoxType.radar))
+            {
+                CameraController._instance.wholeView = true;
+            }
             tankBuff.AddBuff((int)BoxType.radar);
         }
     }
@@ -76,7 +86,7 @@ public class MagicBox : MagicBoxBase
     private IEnumerator DestroyBox()
     {
         yield return new WaitForSeconds(0.1f);
-        MagicBoxController._instance.canCreatBox = true;
+        MagicBoxController._instance.canCreatBox[posIndex] = true;
         Destroy(this.gameObject);
     }
 }

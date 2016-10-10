@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
         camera0 = Camera.main;
     }
 
-    public void LateUpdate()
+    public void FixedUpdate()
     {
         if (mTankPrefab || wholeView)
         {

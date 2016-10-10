@@ -50,8 +50,8 @@ public class CountDownController : MonoBehaviour
         {
             //坦克重生
             Vector3 pos = startPos[Random.Range(0, startPos.Length)].transform.position;
-            CameraController._instance.mTankPrefab.SetActive(true);
             CameraController._instance.mTankPrefab.transform.position = pos;
+            CameraController._instance.mTankPrefab.SetActive(true);
             CameraController._instance.wholeView = false;
 
             CountDownObject.SetActive(false);

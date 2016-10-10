@@ -25,7 +25,7 @@ public class TankShoot : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (canShoot && Input.GetKeyDown(KeyCode.Space))
+            if (canShoot && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
             {
                 CmdTankFire();
                 canShoot = false;

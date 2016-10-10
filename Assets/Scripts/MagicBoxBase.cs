@@ -11,5 +11,6 @@ public class MagicBoxBase : NetworkBehaviour{
         radar = 3
     }
 
+    public int posIndex;
     public BoxType buffType = BoxType.none;
 }

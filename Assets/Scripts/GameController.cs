@@ -9,6 +9,8 @@ public class GameController : NetworkBehaviour
 
     private Camera camera0;
 
+    public GameObject map;
+
     [HideInInspector]
     public List<GameObject> tankTransList = new List<GameObject>();
 
@@ -33,7 +35,14 @@ public class GameController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            map.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            map.SetActive(false);
+        }
     }
 
     //public void LateUpdate()
