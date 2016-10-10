@@ -33,7 +33,7 @@ public class TankBuff : MonoBehaviour
                         CameraController._instance.wholeView = false;
                         break;
                     case MagicBoxBase.BoxType.shootSpeed:
-                        tankShoot.intervalTime *= 2;
+                        tankShoot.intervalTime *= 3;
                         break;
                 }
                 buffList.RemoveAt(i);

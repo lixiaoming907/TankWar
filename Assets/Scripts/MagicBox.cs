@@ -56,7 +56,7 @@ public class MagicBox : MagicBoxBase
         if (CameraController._instance.mTankPrefab == tankObject)
         {
             TankShoot tankShoot = CameraController._instance.mTankPrefab.GetComponent<TankShoot>();
-            tankShoot.intervalTime /= 2;
+            tankShoot.intervalTime /= 3;
             TankBuff tankBuff = CameraController._instance.mTankPrefab.GetComponent<TankBuff>();
             tankBuff.AddBuff((int)BoxType.shootSpeed);
         }
