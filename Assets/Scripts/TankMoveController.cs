@@ -135,18 +135,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90) //坦克自身Z轴在世界坐标Z轴的顺时针方向，需要反向旋转
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             
         }
@@ -176,18 +180,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
         }
         else if (h > 0 && v == 0) //向右
@@ -208,18 +216,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
             }
         }
         else if (h < 0 && v == 0) //向左
@@ -240,18 +252,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -h * rotateSpeed * Time.deltaTime);
             }
         }
         else if (h < 0 && v < 0) //左下
@@ -272,18 +288,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
         }
         else if (h > 0 && v < 0) //右下
@@ -304,18 +324,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -h * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, h * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, h * rotateSpeed * Time.deltaTime);
             }
         }
         else if (h > 0 && v > 0) //右上
@@ -336,18 +360,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
         }
         else if (h < 0 && v > 0) //左上
@@ -368,18 +396,22 @@ public class TankMoveController : NetworkBehaviour
             else if (crossValue.y > 0 && offsetV < 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV <= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y > 0 && offsetV >= 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, -v * rotateSpeed * Time.deltaTime);
             }
             else if (crossValue.y < 0 && offsetV > 90)
             {
                 transform.RotateAround(transform.position, transform.up, v * -1 * rotateSpeed * Time.deltaTime);
+                tankAbove.transform.RotateAround(transform.position, transform.up, v * rotateSpeed * Time.deltaTime);
             }
         }
 
