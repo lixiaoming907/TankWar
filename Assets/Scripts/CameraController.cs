@@ -23,7 +23,8 @@ public class CameraController : MonoBehaviour
 
     [HideInInspector]
     public GameObject mTankPrefab;
-
+    [HideInInspector]
+    public GameObject mTankPaoKou;
     //[HideInInspector]
     public bool wholeView = false; //雷达效果
 
@@ -118,7 +119,7 @@ public class CameraController : MonoBehaviour
         else
         {
             averagePos = (mTankPrefab.transform.position +
-                          (mTankPrefab.transform.forward + mTankPrefab.transform.TransformPoint(m_ViewRange))) * spreadRate;
+                          (mTankPaoKou.transform.forward + mTankPaoKou.transform.TransformPoint(m_ViewRange))) * spreadRate;
         }
         averagePos.y = camera0.gameObject.transform.position.y;
         m_DesiredPosition = averagePos;

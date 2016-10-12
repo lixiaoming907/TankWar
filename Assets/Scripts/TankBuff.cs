@@ -33,6 +33,37 @@ public class TankBuff : NetworkBehaviour
         }
     }
 
+    //在坦克死亡的时候清空buff
+    public void OnDisable()
+    {
+        if (isLocalPlayer)
+        {
+            fastRun.fillAmount = 0;
+            radar.fillAmount = 0;
+            shootSpeed.fillAmount = 0;
+            for (int i = 0; i < buffList.Count; i++)
+            {
+                switch (buffList[i].type)
+                {
+                    case MagicBoxBase.BoxType.moveSpeed:
+                        tankMove.moveSpeed /= 2;
+                        tankMove.rotateSpeed /= 2;
+                        fastRun.fillAmount = 0;
+                        break;
+                    case MagicBoxBase.BoxType.radar:
+                        CameraController._instance.wholeView = false;
+                        radar.fillAmount = 0;
+                        break;
+                    case MagicBoxBase.BoxType.shootSpeed:
+                        tankShoot.intervalTime *= 3;
+                        shootSpeed.fillAmount = 0;
+                        break;
+                }
+                buffList.RemoveAt(i);
+            }
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
